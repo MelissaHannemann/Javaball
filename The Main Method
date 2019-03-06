@@ -113,9 +113,14 @@ public class JavaBall
             pay = 100;
             return pay;
             }
-            else
+            else if (count == 3)
             {
             pay = 7;
+            return pay;
+            }
+	       else
+            {
+            pay = 0;
             return pay;
             }
       }
