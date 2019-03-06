@@ -1,0 +1,122 @@
+import java.util.*;
+public class JavaBall
+{
+   static int[] nums = new int[6];
+   static int[] userNums = new int[6];
+   static Random gen = new Random();
+   static Scanner scan = new Scanner(System.in);
+   static boolean jb;
+   static int count = 0;
+   static int pay;
+   static int i, j, x;
+   public static void main(String args[])
+   {
+   gen();
+   userInput(userNums);
+   payout();
+   }
+   public static void gen(){
+   
+     	 	//Creates an empty array
+     		 //int[] nums = new int[6];
+      
+      		//Creates powerball number
+      		Random gen = new Random();
+      		nums[6] = gen.nextInt(26) + 1;
+      
+     		 //Creates normal numbers
+      		for(i = 1; i <= 5; i++)
+         			nums[i-1] = gen.nextInt(69) + 1;
+         			for(x = 0; x < (i-1); x++){
+            				if (nums[x] == nums[i-1]){
+              		 		nums[i-1] = gen.nextInt(69) + 1; 
+               				i = i-1;
+            			}
+        		 }
+     	}
+	
+   public static int[] userInput(int chosen[])
+      {	
+      		System.out.println("Please choose your white balls. enter a number between 1 and 69 for each guess with no repeats.");
+      		for(i = 0; i < 5; i = i+1)
+      		{
+         			Scanner scan = new Scanner(System.in);
+        			System.out.print("Ball " + (i + 1) + ": ");
+         			chosen[i] = scan.nextInt();
+     		 }
+      
+      		Scanner scan = new Scanner(System.in);
+      		System.out.println("Now choose your Powerball! Choose a number between 1 and 26.");
+      		System.out.print("Powerball number: ");
+     		chosen[5] = scan.nextInt();
+     		System.out.print("You chose: ");
+         for(i = 0; i < 6; i++)
+         	System.out.print(chosen[i] + " ");
+		   return chosen;
+	   }
+
+   public static int payout()
+      {
+         if (userNums[5] == nums[5])
+         {
+            jb = true;
+            count = 0;
+            for (i = 0; i < 5; i++)
+               for (j = 0; j < 5; j++)
+                  if (userNums[i] == nums[j])
+                     count++;
+         }
+         else
+         {
+            jb = false;
+            count = 0;
+            for (i = 0; i < 5; i++)
+               for (j = 0; j < 5; j++)
+                  if (userNums[i] == nums[j])
+                     count++;
+         }
+         
+         if (jb == true)
+            if (count == 5)
+            {
+               pay = 1500000;
+               return pay;
+            }
+            else if (count == 4)
+            {
+               pay = 50000;
+               return pay;
+            }
+            else if (count == 3)
+            {
+               pay = 100;
+               return pay;
+            }
+            else if (count == 2)
+            {
+               pay = 7;
+               return pay;
+            }
+            else
+            {
+               pay = 4;
+               return pay;
+            }
+         else
+            if (count == 5)
+            {
+            pay = 1000000;
+            return pay;
+            }
+            else if (count == 4)
+            {
+            pay = 100;
+            return pay;
+            }
+            else
+            {
+            pay = 7;
+            return pay;
+            }
+      }
+}
